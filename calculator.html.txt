@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your age, time, date, week, month, and year with this free online Age Calculator. Easy to use and accurate!">
+  <meta name="keywords" content="age calculator, calculate age, online age calculator, free age calculator, time calculator, date calculator, week calculator, month calculator, year calculator">
+  <meta name="author" content="Your Name">
+  <title>Free Online Age Calculator - Calculate Age, Time, Date, Week, Month, Year</title>
+  <style>
+    /* CSS Styling (same as before) */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 28px;
+    }
+
+    .instructions {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      border: 1px solid #eee;
+      text-align: left;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3><b>Discover your exact age in years, months, and days with our free online Age Calculator! Whether you're planning a birthday, tracking milestones, or just curious, our tool provides instant and accurate results. Simply enter your birthdate, and let our calculator do the rest.<b> </h3>
+    <h1>Advanced Age Calculator</h1>
+    <p class="instructions">Enter your birthdate below to calculate your age and other details.</p>
+    <div class="input-group">
+      <label for="birthdate">Your Birthdate:</label>
+      <input type="date" id="birthdate" name="birthdate">
+    </div>
+    <button onclick="calculateAge()">Calculate Age</button>
+    <div class="result" id="result">
+      <!-- Result will be displayed here -->
+    </div>
+    <div class="footer">
+      <p>Made with ❤️ by [India]</p>
+    </div>
+  </div>
+<h3><i>Why Choose Our Age Calculator?
+Fast & Easy: Get your age in seconds with just a few clicks.
+
+Accurate Results: Calculate your age down to the exact day.
+
+Mobile-Friendly: Works seamlessly on all devices – desktop, mobile, or tablet.
+
+Additional Features:
+
+Countdown to your next birthday.
+
+Discover your zodiac sign and birthstone.
+
+Fun facts about your birth year.
+
+Perfect for anyone looking to calculate their age for personal, legal, or professional purposes. Try it now and share your results with friends and family!
+
+</i></h3>
+  <script>
+    // JavaScript Logic (same as before)
+    function calculateAge() {
+      const birthdate = document.getElementById('birthdate').value;
+      if (!birthdate) {
+        alert("Please enter your birthdate.");
+        return;
+      }
+
+      const today = new Date();
+      const birthDate = new Date(birthdate);
+
+      // Calculate Age
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDifference = today.getMonth() - birthDate.getMonth();
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      // Calculate Time
+      const time = today.toLocaleTimeString();
+
+      // Calculate Date
+      const date = today.toLocaleDateString();
+
+      // Calculate Week
+      const week = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24 * 7));
+
+      // Calculate Month
+      const month = (today.getFullYear() - birthDate.getFullYear()) * 12 + (today.getMonth() - birthDate.getMonth());
+
+      // Calculate Year
+      const year = today.getFullYear();
+
+      // Display the result
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <p><strong>Age:</strong> ${age} years</p>
+        <p><strong>Time:</strong> ${time}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Week:</strong> ${week} weeks since birth</p>
+        <p><strong>Month:</strong> ${month} months since birth</p>
+        <p><strong>Year:</strong> ${year}</p>
+        <p><strong>Day of Birth:</strong> ${birthDate.toLocaleDateString('en-US', { weekday: 'long' })}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
